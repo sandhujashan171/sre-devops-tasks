@@ -440,3 +440,22 @@ WARNING: 488
  - 2026-09-30T23:49:00.203044+05:30 harjashan-VirtualBox update-notifier[367645]: message repeated 2 times: [ gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed]
  - 2026-09-30T23:49:00.453518+05:30 harjashan-VirtualBox gnome-shell[364949]: Cursor update failed: drmModeAtomicCommit: Invalid argument
 ==================================================
+Cannot autolaunch D-Bus without X11 $DISPLAY
+==================================================
+       SYSLOG MONITORING REPORT       
+==================================================
+Total lines scanned: 6935
+--------------------------------------------------
+[log levels breakdown]
+ERROR: 60
+FAILED: 187
+INFO: 149
+WARNING: 507
+--------------------------------------------------
+[recent critical events (last 5)]
+ - 2026-09-30T23:49:00.453518+05:30 harjashan-VirtualBox gnome-shell[364949]: Cursor update failed: drmModeAtomicCommit: Invalid argument
+ - 2026-10-01T00:44:52.406773+05:30 harjashan-VirtualBox systemd[1]: Starting apport-autoreport.service - Process error reports when automatic reporting is enabled...
+ - 2026-10-01T01:45:04.345979+05:30 harjashan-VirtualBox gnome-shell[364949]: Failed to make thread 'KMS thread' normally scheduled: Operation not permitted
+ - 2026-10-02T19:40:04.987009+05:30 harjashan-VirtualBox systemd[1]: apport-autoreport.service: Failed with result 'exit-code'.
+ - 2026-10-02T19:40:04.987197+05:30 harjashan-VirtualBox systemd[1]: Failed to start apport-autoreport.service - Process error reports when automatic reporting is enabled.
+==================================================
