@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import re
+import subprocess
 from collections import Counter
 
 LOG_FILE = "/var/log/syslog"
@@ -66,9 +67,15 @@ class LogMonitor:
         else:
             for error in recent_errors[-5:]:
                 print(f" - {error}")
+            self.send_alert(len(recent_errors))
 
         print("=" * 50)
 
+    def send_alert(self, error_count):
+        title = "Log Monitor Alert"
+        message = f"CRITICAL: Found {error_count} recent errors in system logs!"
+        subprocess.run(["notify-send", title, message])
+
 
 if __name__ == "__main__":
-    LogMonitor().parse_logs()           
+    LogMonitor().parse_logs()
