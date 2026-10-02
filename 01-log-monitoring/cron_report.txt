@@ -459,3 +459,7 @@ WARNING: 507
  - 2026-10-02T19:40:04.987009+05:30 harjashan-VirtualBox systemd[1]: apport-autoreport.service: Failed with result 'exit-code'.
  - 2026-10-02T19:40:04.987197+05:30 harjashan-VirtualBox systemd[1]: Failed to start apport-autoreport.service - Process error reports when automatic reporting is enabled.
 ==================================================
+ERROR: 65
+FAILED: 205
+INFO: 160
+WARNING: 555
