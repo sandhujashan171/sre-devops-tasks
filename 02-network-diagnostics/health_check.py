@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 import urllib.request
+import os
 import urllib.error
 
-TARGET_URL = "https://www.github.com"
+TARGET_URL = os.getenv("CHECK_URL", "[https://www.google.com](https://www.google.com)")
 
 def check_health():
     print(f"Checking health for {TARGET_URL}...")
