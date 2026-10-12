@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: k8s-network-checker
+spec:
+  containers:
+  - name: checker-container
+    image: network-checker:latest
+    imagePullPolicy: Never
+    env:
+    - name: CHECK_URL
+      value: "https://www.amazon.com"
+  restartPolicy: Never
