@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import re
+import subprocess
 from collections import Counter
 
 LOG_FILE = "/var/log/syslog"
@@ -36,8 +37,21 @@ class LogMonitor:
             if match:
                 log_levels[match.group(1).upper()] += 1
 
-        for level, count in sorted(log_levels.items()):
-            print(f"{level}: {count}")
+        if not log_levels:
+            print("No log levels found.")
+        else:
+            for level, count in sorted(log_levels.items()):
+                print(f"{level}: {count}")
+
+            error_count = log_levels.get("ERROR", 0)
+            if error_count > 0:
+                self.send_alert(error_count)
+
+    def send_alert(self, error_count):
+        title = "Log Monitor Alert"
+        message = f"CRITICAL: Found {error_count} recent errors in system logs!"
+        subprocess.run(["notify-send", title, message], check=False)
+
 
 if __name__ == "__main__":
     LogMonitor().parse_logs()
