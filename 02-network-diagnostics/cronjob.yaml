@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: network-checker-cron
+spec:
+  schedule: "*/2 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: checker-container
+            image: network-checker:latest
+            imagePullPolicy: Never
+            env:
+            - name: CHECK_URL
+              value: "https://www.amazon.com"
+          restartPolicy: OnFailure
