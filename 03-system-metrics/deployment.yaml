@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: system-metrics-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: system-metrics-api
+  template:
+    metadata:
+      labels:
+        app: system-metrics-api
+    spec:
+      containers:
+      - name: metrics-container
+        image: harjashan/system-metrics-api:v1
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: system-metrics-api-service
+spec:
+  selector:
+    app: system-metrics-api
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
