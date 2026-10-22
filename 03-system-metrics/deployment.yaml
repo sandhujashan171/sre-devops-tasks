@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: metrics-container
-        image: harjashan/system-metrics-api:v1
+        image: harjashan/system-metrics-api:v2
         ports:
         - containerPort: 8000
 ---
@@ -26,6 +26,7 @@ spec:
   selector:
     app: system-metrics-api
   ports:
-    - protocol: TCP
-      port: 8000
-      targetPort: 8000
+  - name: http
+    protocol: TCP
+    port: 8000
+    targetPort: 8000

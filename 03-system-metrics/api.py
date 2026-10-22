@@ -1,12 +1,19 @@
 from fastapi import FastAPI
-from system_util import get_system_metrics
+from fastapi.responses import PlainTextResponse
+from prometheus_client import Gauge, generate_latest
+import psutil
 
 app = FastAPI()
 
-@app.get("/hello")
-def read_root():
-    return {"message": "Hello from your Ubuntu server!"}
+# Define the exact metric names Prometheus will look for
+cpu_gauge = Gauge('cpu_usage_percent', 'Current CPU utilization')
+mem_gauge = Gauge('memory_usage_percent', 'Current memory utilization')
 
-@app.get("/metrics")
-def read_metrics():
-    return get_system_metrics()
+@app.get("/metrics", response_class=PlainTextResponse)
+def metrics():
+    # Capture the live hardware data
+    cpu_gauge.set(psutil.cpu_percent())
+    mem_gauge.set(psutil.virtual_memory().percent)
+    
+    # Output in the specific plaintext format Prometheus requires
+    return generate_latest()
